@@ -26,14 +26,14 @@ jobs:
           for MESSAGE_COMMITS in "${LIST_MESSAGE_COMMITS[@]}"
           do
             INCORRECT_WORDS=$(echo ${MESSAGE_COMMITS} | aspell --lang=en list);
-            echo "lenght array INCORRECT_WORDS:"
+            echo "lenght array incorrect words:"
             if [ ${#INCORRECT_WORDS[@]} -eq 0 ]; then
               echo "array INCORRECT_WORDS is empty"
             else
-              echo "Aspell find incorrect message"
+              echo "Aspell find incorrect message:"
               for WORD in "${INCORRECT_WORDS[@]}"
               do
-                echo ${word};
+                echo ${WORD};
               done
             fi
           done

@@ -31,7 +31,7 @@ jobs:
               echo "array INCORRECT_WORDS is empty"
             else
               echo "Aspell find incorrect message"
-              for WORD in "${$INCORRECT_WORDS[@]}"
+              for WORD in "${INCORRECT_WORDS[@]}"
               do
                 echo ${word};
               done

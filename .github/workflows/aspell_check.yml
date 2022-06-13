@@ -28,7 +28,9 @@ jobs:
           for MESSAGE_COMMITS in "${LIST_MESSAGE_COMMITS[@]}"
           do
             result_aspell=$(echo ${MESSAGE_COMMITS} | aspell --lang=en list);
-            if [ ${result_aspell[@]} -eq 0 ]; then
+            lenght array result_aspell
+            echo "${#result_aspell[@]}"
+            if [ ${#result_aspell[@]} -eq 0 ]; then
               echo "No errors, hooray"
             else
               echo "Aspell find incorrect message"

@@ -25,16 +25,16 @@ jobs:
           readarray -t LIST_MESSAGE_COMMITS < <(git log ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} --pretty=format:%s)
           for MESSAGE_COMMITS in "${LIST_MESSAGE_COMMITS[@]}"
           do
-            result_aspell=$(echo ${MESSAGE_COMMITS} | aspell --lang=en list);
-            echo "lenght array result_aspell"
-            echo "${#result_aspell[@]}"
-            if [ ${#result_aspell[@]} -eq 0 ]; then
-              echo "No errors, hooray"
+            INCORRECT_WORDS=$(echo ${MESSAGE_COMMITS} | aspell --lang=en list);
+            echo "lenght array INCORRECT_WORDS:"
+            if [ ${#INCORRECT_WORDS[@]} -eq 0 ]; then
+              echo "array INCORRECT_WORDS is empty"
             else
               echo "Aspell find incorrect message"
-              echo $result_aspell
+              for WORD in "${$INCORRECT_WORDS[@]}"
+              do
+                echo ${word};
+              done
             fi
           done
         shell: bash {0}
-
-

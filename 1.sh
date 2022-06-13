@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-output=$(echo 'my conscience is clea' | aspell --lang=en list);
+output=$(echo 'missage' | aspell --lang=en list);
 if [[ $? != 0 ]]; then
         echo -e "${RED}Error found in output${NC}, cannot continue. Please check manually for aspell -c $file?"
         exit 1
@@ -11,3 +11,16 @@ elif [[ $output ]]; then
         bad="yes"
         good="yes"
 fi
+
+
+
+#            if [[ $? != 0 ]]; then
+#              echo -e "${result_aspell}"
+#              echo -e "${MESSAGE_COMMITS}"
+#              echo "if"
+#              exit 1
+#            elif [[ $result_aspell ]]; then
+#              echo -e "$result_aspell"
+#              echo -e "${MESSAGE_COMMITS}"
+#              echo "elif"
+#            fi

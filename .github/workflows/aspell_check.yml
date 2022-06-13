@@ -21,18 +21,17 @@ jobs:
           # set -o nounset   # fail if var undefined
           # set -o noclobber # don't overwrite exists files via >
           # set -o pipefail  # fails if pipes (|) fails
-          set -o xtrace  # debug
+          # set -o xtrace  # debug
           readarray -t LIST_MESSAGE_COMMITS < <(git log ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} --pretty=format:%s)
           for MESSAGE_COMMITS in "${LIST_MESSAGE_COMMITS[@]}"
           do
+            echo "INCORRECT_WORDS:"
+            echo ${MESSAGE_COMMITS} | aspell --lang=en list
             INCORRECT_WORDS=$(echo ${MESSAGE_COMMITS} | aspell --lang=en list);
-            echo "line 29"
             if [ ${#INCORRECT_WORDS[@]} -eq 0 ]; then
-              echo "line 31"
               echo "array INCORRECT_WORDS is empty"
               echo "${#INCORRECT_WORDS[@]}"
             else
-              echo "line 35"
               echo "${#INCORRECT_WORDS[@]}"
               echo "Aspell find incorrect message:"
               for WORD in "${INCORRECT_WORDS[@]}"
